@@ -1,0 +1,437 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 15px;
+}
+
+.app-container {
+  max-width: 1300px;
+  width: 100%;
+  margin: 0 auto;
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+  padding: 25px;
+}
+
+h1 {
+  color: #333;
+  margin-bottom: 20px;
+  text-align: center;
+  font-size: 2rem;
+  font-weight: 600;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.prediction-form {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 15px;
+  margin-bottom: 25px;
+}
+
+/* Form Section Styling - SMALLER */
+.form-section {
+  background: #f8f9fa;
+  padding: 15px;
+  border-radius: 12px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.03);
+  height: fit-content;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.form-section:hover {
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.15);
+  transform: translateY(-1px);
+}
+
+.section-title {
+  color: #495057;
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 12px;
+  padding-bottom: 8px;
+  border-bottom: 1.5px solid #e9ecef;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.section-title svg,
+.section-title i,
+.section-title span {
+  font-size: 1.1rem;
+}
+
+/* Form Group Styling - COMPACT */
+.form-group {
+  margin-bottom: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group label {
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: #495057;
+  margin-bottom: 3px;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+}
+
+/* Dropdown and Input Styling - SMALLER */
+.form-group select,
+.form-group input {
+  padding: 8px 12px;
+  border: 1.5px solid #e9ecef;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  transition: all 0.2s ease;
+  background: white;
+  width: 100%;
+  color: #333;
+  opacity: 1;
+  visibility: visible;
+  display: block;
+  height: 36px;
+}
+
+/* Dropdown arrow styling - SMALLER */
+.form-group select {
+  appearance: none;
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23495057' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  background-size: 14px;
+  padding-right: 30px;
+  cursor: pointer;
+}
+
+/* Hover effects */
+.form-group select:hover,
+.form-group input:hover {
+  border-color: #667eea;
+  background-color: #fff;
+}
+
+/* Focus effects */
+.form-group select:focus,
+.form-group input:focus {
+  outline: none;
+  border-color: #667eea;
+  box-shadow: 0 0 0 2px rgba(102, 126, 234, 0.1);
+  background-color: #fff;
+}
+
+/* Dropdown options styling */
+.form-group select option {
+  background: white;
+  color: #333;
+  padding: 8px;
+  font-size: 0.85rem;
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Number input styling */
+.form-group input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+.form-group input[type="number"]::-webkit-outer-spin-button,
+.form-group input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Placeholder styling */
+.form-group input::placeholder {
+  color: #adb5bd;
+  opacity: 0.7;
+  font-size: 0.8rem;
+}
+
+/* Button Container */
+.button-container {
+  grid-column: 1 / -1;
+  display: flex;
+  justify-content: center;
+  margin-top: 15px;
+}
+
+.submit-btn {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border: none;
+  padding: 10px 35px;
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 40px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+  min-width: 200px;
+}
+
+.submit-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 16px rgba(102, 126, 234, 0.4);
+}
+
+.submit-btn:active {
+  transform: translateY(0);
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+}
+
+.submit-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* Loading State - SMALLER */
+.loading-container {
+  grid-column: 1 / -1;
+  text-align: center;
+  margin: 15px 0;
+  padding: 10px;
+}
+
+.loading-spinner {
+  display: inline-block;
+  width: 35px;
+  height: 35px;
+  border: 2.5px solid #f3f3f3;
+  border-top: 2.5px solid #667eea;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.loading-text {
+  margin-top: 8px;
+  color: #667eea;
+  font-weight: 500;
+  font-size: 0.9rem;
+}
+
+/* Result Container - SMALLER */
+.result-container {
+  grid-column: 1 / -1;
+  margin-top: 20px;
+  padding: 20px;
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  border-radius: 12px;
+  border: none;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.result-container h3 {
+  color: #495057;
+  font-size: 1.2rem;
+  margin-bottom: 15px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.result-content {
+  background: white;
+  padding: 18px;
+  border-radius: 10px;
+  border-left: 4px solid #667eea;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.03);
+}
+
+.result-content pre {
+  font-family: "Courier New", Courier, monospace;
+  font-size: 0.9rem;
+  color: #333;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  margin: 0;
+}
+
+/* Error message styling */
+.error-message {
+  border-left-color: #dc3545;
+  background: #fff8f8;
+}
+
+.error-message p {
+  color: #dc3545;
+  font-weight: 600;
+  margin-bottom: 12px;
+  font-size: 0.95rem;
+}
+
+.error-details {
+  background: #f8f9fa;
+  padding: 12px;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  color: #6c757d;
+  border: 1px solid #ffe0e0;
+}
+
+/* Responsive Design */
+@media (max-width: 1100px) {
+  .prediction-form {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+  }
+
+  .app-container {
+    padding: 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  body {
+    padding: 12px;
+  }
+
+  .app-container {
+    padding: 18px;
+  }
+
+  h1 {
+    font-size: 1.8rem;
+    margin-bottom: 18px;
+  }
+
+  .prediction-form {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+
+  .form-section {
+    padding: 15px;
+  }
+
+  .submit-btn {
+    width: 100%;
+    min-width: auto;
+    padding: 12px 25px;
+    font-size: 0.95rem;
+  }
+}
+
+@media (max-width: 480px) {
+  body {
+    padding: 10px;
+  }
+
+  .app-container {
+    padding: 15px;
+  }
+
+  h1 {
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+  }
+
+  .section-title {
+    font-size: 0.95rem;
+    margin-bottom: 10px;
+    padding-bottom: 6px;
+  }
+
+  .form-group select,
+  .form-group input {
+    padding: 7px 10px;
+    font-size: 0.8rem;
+    height: 34px;
+  }
+
+  .form-group label {
+    font-size: 0.65rem;
+  }
+
+  .result-container {
+    padding: 15px;
+  }
+
+  .result-content {
+    padding: 15px;
+  }
+}
+
+/* Fix for Firefox dropdown arrow */
+@-moz-document url-prefix() {
+  .form-group select {
+    text-indent: 0.01px;
+    text-overflow: "";
+    padding-right: 25px;
+  }
+}
+
+/* Fix for IE/Edge dropdown arrow */
+select::-ms-expand {
+  display: none;
+}
+
+/* Ensure form sections are properly centered */
+.form-section {
+  width: 100%;
+  margin: 0;
+}
+
+/* Center the entire app vertically and horizontally */
+#root {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+}
+
+/* Optional: Make the form even more compact on large screens */
+@media (min-width: 1400px) {
+  .app-container {
+    max-width: 1400px;
+  }
+
+  .prediction-form {
+    gap: 18px;
+  }
+
+  .form-section {
+    padding: 18px;
+  }
+}
+
+/* Adjust spacing for better compact layout */
+.form-section:last-child {
+  margin-bottom: 0;
+}
+
+/* Make the form groups more compact */
+.form-group:last-child {
+  margin-bottom: 0;
+}
